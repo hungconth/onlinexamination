@@ -1,56 +1,161 @@
 <!DOCTYPE html>
 {% load widget_tweaks %}
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <style>
 
-        form{
-           margin: 50px; 
-          
-        }
+<head>
+  <meta charset="utf-8">
+  <style>
+    body {
+      margin: auto;
+      padding: 0;
+      display: block;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: 'Jost', sans-serif;
+      background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+    }
+    h3 {
+      text-align: center;
+      font-size: 20px;
+      color: #ecf0f1;
+      text-shadow: 2px 2px 4px #000000;
+      font-family: 'Cherry Swash', cursive;
+    }
+    .container {
+      width: 350px;
+      height: 800px;
+      
+      margin: auto;
+      background: red;
+      overflow: hidden;
+      background: url("https://doc-08-2c-docs.googleusercontent.com/docs/securesc/68c90smiglihng9534mvqmq1946dmis5/fo0picsp1nhiucmc0l25s29respgpr4j/1631524275000/03522360960922298374/03522360960922298374/1Sx0jhdpEpnNIydS4rnN4kHSJtU1EyWka?e=view&authuser=0&nonce=gcrocepgbb17m&user=03522360960922298374&hash=tfhgbs86ka6divo3llbvp93mg4csvb38") no-repeat center/ cover;
+      border-radius: 10px;
+      box-shadow: 5px 20px 50px #000;
+    }
 
-    </style>
-  </head>
+    #chk {
+      display: none;
+    }
+
+    .signup {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    label {
+      color: #fff;
+      font-size: 1.4em;
+      /* justify-content: center;
+      display: flex; */
+      margin: 42px;
+      font-weight: bold;
+      /* cursor: pointer; */
+      /* transition: .5s ease-in-out; */
+    }
+
+    input {
+      width: 70%;
+      height: 10px;
+      background: #e0dede;
+      justify-content: center;
+      display: flex;
+      margin: 10px auto;
+      padding: 10px;
+      border: none;
+      outline: none;
+      border-radius: 5px;
+    }
+
+    button {
+      width: 60%;
+      height: 40px;
+      margin: 10px auto;
+      justify-content: center;
+      display: block;
+      color: #fff;
+      background: #573b8a;
+      font-size: 1em;
+      font-weight: bold;
+      margin-top: 20px;
+      outline: none;
+      border: none;
+      border-radius: 5px;
+      transition: .2s ease-in;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #6d44b8;
+    }
+
+    .login {
+      height: 460px;
+      background: #eee;
+      border-radius: 60% / 10%;
+      transform: translateY(-180px);
+      transition: .8s ease-in-out;
+    }
+
+    .login label {
+      color: #573b8a;
+      transform: scale(.6);
+    }
+
+    #chk:checked~.login {
+      transform: translateY(-500px);
+    }
+
+    #chk:checked~.login label {
+      transform: scale(1);
+    }
+
+    #chk:checked~.signup label {
+      transform: scale(.6);
+    }
+  </style> 
+</head>
+
 <body>
-    {% include "exam/navbar.html" %}
+  {% include "exam/navbar.html" %}
 
-<br><br><br>
-<div class="container">
-  <h3 style="text-align: center;">Student Signup Form</h3>
-<form method="POST" autocomplete="off" enctype="multipart/form-data">
-    {% csrf_token %}
+  <br><br><br>
+  <div class="container">
+    <h3 style="text-align: center;">Signup Form</h3>
+    <form method="POST" autocomplete="off" enctype="multipart/form-data">
+      {% csrf_token %}
 
-    <div class="form-row">
+      <div class="form-row">
         <div class="form-group col-md-6">
           <label for="first_name">First Name</label>
-          {% render_field userForm.first_name|attr:'required:true'  class="form-control" placeholder="First Name" %}
+          {% render_field userForm.first_name|attr:'required:true' class="form-control" placeholder="First Name" %}
         </div>
         <div class="form-group col-md-6">
           <label for="last_name">Last Name</label>
-          {% render_field userForm.last_name|attr:'required:true'  class="form-control" placeholder="Last Name" %}
+          {% render_field userForm.last_name|attr:'required:true' class="form-control" placeholder="Last Name" %}
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="mobile">Contact</label>
-          {% render_field studentForm.mobile|attr:'required:true'  class="form-control" placeholder="Contact Number" %}
+          {% render_field studentForm.mobile|attr:'required:true' class="form-control" placeholder="Contact Number" %}
         </div>
         <div class="form-group col-md-6">
           <label for="address">Address</label>
-          {% render_field studentForm.address|attr:'required:true'  class="form-control" placeholder="Address" %}
+          {% render_field studentForm.address|attr:'required:true' class="form-control" placeholder="Address" %}
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="username">Username</label>
-          {% render_field userForm.username|attr:'required:true'  class="form-control" placeholder="username" %}
+          {% render_field userForm.username|attr:'required:true' class="form-control" placeholder="username" %}
         </div>
         <div class="form-group col-md-6">
           <label for="inputPassword4">Password</label>
-          {% render_field userForm.password|attr:'required:true'  class="form-control" placeholder="password" %}
+          {% render_field userForm.password|attr:'required:true' class="form-control" placeholder="password" %}
         </div>
       </div>
 
@@ -59,16 +164,13 @@
           <label for="profile_pic">Profile Picture</label>
           {% render_field studentForm.profile_pic|attr:'required:true' class="form-control" placeholder="" %}
         </div>
-        
+
       </div>
 
 
-    <button type="submit" class="btn btn-success" style="border-radius: 0%;">Sign Up</button>
-  </form>
-</div>
+      <button type="submit" class="btn btn-success"">Sign Up</button>
+    </form>
+  </div>
+</body>
 
-
-<br><br>
-
-  </body>
 </html>
